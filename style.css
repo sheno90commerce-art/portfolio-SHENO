@@ -1,0 +1,334 @@
+/* التصميم الجديد بالكامل لشنودة - Glassmorphism Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Tajawal', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* منع ظهور أي شريط تمرير أفقي نهائياً */
+}
+
+body {
+  background: #0a0f1d; /* لون كوني غامق عميق */
+  color: #e2e8f0;
+  display: flex;
+  justify-content: center; /* توسيط أفقي حقيقي مدعوم من المتصفح */
+  align-items: center;     /* توسيط رأسي حقيقي */
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* تأثير الإضاءة الخلفية المتحركة - تم إصلاحها لمنع تمدد الشاشة */
+.bg-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; 
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden; /* يضمن بقاء الدوائر المشعة داخل حدود الـ body دون تدمير التوسيط */
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  animation: floatAnimation 8s infinite alternate ease-in-out;
+}
+
+.circle.c1 {
+  width: 400px;
+  height: 400px;
+  background: #38bdf8;
+  top: -10%;
+  left: -10%;
+}
+
+.circle.c2 {
+  width: 500px;
+  height: 500px;
+  background: #c084fc;
+  bottom: -10%;
+  right: -10%;
+  animation-delay: 2s;
+}
+
+@keyframes floatAnimation {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(40px) scale(1.1); }
+}
+
+/* الكارت الزجاجي الضخم المحتوي للموقع */
+.glass-portfolio {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 850px;
+  background: rgba(255, 255, 255, 0.03); /* شفافية عالية */
+  backdrop-filter: blur(20px); /* تأثير الضباب على الخلفية */
+  -webkit-backdrop-filter: blur(20px); /* إضافة الشرطة الناقصة لإصلاح دعم سفاري ومتصفحات آيفون */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* حواف مضيئة خفيفة جداً */
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  /* تم حذف margin: auto لمنع التضارب مع الـ Flexbox الخاص بالـ body */
+}
+
+/* الهيدر وبايو الشخصية */
+.profile-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.main-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 24px; /* زوايا منحنية حديثة بدلاً من الدائرة التقليدية */
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.status-badge {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #22c55e;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.profile-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #38bdf8;
+  font-weight: 500;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mini-bio {
+  font-size: 1rem;
+  color: #94a3b8;
+  max-width: 580px;
+  margin: 15px auto 0;
+  line-height: 1.7;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to left, transparent, rgba(255,255,255,0.1), transparent);
+  margin: 35px 0;
+}
+
+/* العناوين الداخلية */
+.block-title {
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+/* المهارات الجديدة (Pills) */
+.compact-skills {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.skill-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+}
+
+.skill-pill .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.html-pill .dot { background: #ef4444; }
+.css-pill .dot { background: #3b82f6; }
+
+.skill-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* شبكة كروت المشاريع الاحترافية */
+.work-section {
+  margin-top: 40px;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.work-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.work-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(56, 189, 248, 0.3);
+  transform: translateY(-4px);
+}
+
+.img-container {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.2);
+}
+
+.work-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.work-card:hover img {
+  transform: scale(1.05);
+}
+
+.card-info {
+  padding: 20px;
+}
+
+.card-info h3 {
+  font-size: 1.15rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.card-info p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  height: 48px;
+}
+
+.view-project-btn {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.view-project-btn:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+/* قسم التواصل السفلي */
+.contact-footer {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.footer-p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.quick-contact {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+  color: #cbd5e1;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.action-link {
+  padding: 12px 24px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+}
+
+.action-link.wa {
+  background: #22c55e;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(34, 197, 94, 0.3);
+}
+
+.action-link.insta {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-link:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.rights {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 10px;
+}
+
+/* الموبايل والـ Responsive */
+@media (max-width: 600px) {
+  .glass-portfolio { padding: 25px 15px; }
+  .profile-header h1 { font-size: 1.8rem; }
+  .work-grid { grid-template-columns: 1fr; }
+}
